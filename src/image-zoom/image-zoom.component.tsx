@@ -586,6 +586,22 @@ export default class ImageViewer extends React.Component<ImageZoomProps, ImageZo
   }
 
   public componentDidUpdate(prevProps: ImageZoomProps): void {
+    if (this.props.imageWidth !== prevProps.imageWidth) {
+      if (this.props.imageWidth > this.props.imageHeight) {
+        if (this.props.imageWidth > this.props.cropWidth) {
+          this.defaultScale = this.props.cropWidth / this.props.imageWidth;
+          this.scale = this.defaultScale;
+          this.animatedScale.setValue(this.scale);
+        }
+      } else {
+        if (this.props.imageHeight > this.props.cropHeight) {
+          this.defaultScale = this.props.cropHeight / this.props.imageHeight;
+          this.scale = this.defaultScale;
+          this.animatedScale.setValue(this.scale);
+        }
+      }
+    }
+
     // Either centerOn has never been called, or it is a repeat and we should ignore it
     if (
       (this.props.centerOn && !prevProps.centerOn) ||
