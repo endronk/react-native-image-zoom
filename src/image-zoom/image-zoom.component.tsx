@@ -133,7 +133,7 @@ export default class ImageViewer extends React.Component<ImageZoomProps, ImageZo
           this.isDoubleClick = true;
 
           if (this.props.enableDoubleClickZoom) {
-            if (this.scale > 1 || this.scale < 1) {
+            if (this.scale > this.defaultScale || this.scale < this.defaultScale) {
               // 回归原位
               this.scale = this.defaultScale;
 
